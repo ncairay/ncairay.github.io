@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CardBase HK — 卡牌收藏管理</title>
+<meta name="description" content="香港卡牌收藏管理 App。追蹤入手價、賺蝕、每日卡牌行情。">
+
+<!-- 分享預覽 -->
+<meta property="og:title" content="CardBase HK — 卡牌收藏管理">
+<meta property="og:description" content="追蹤入手價、賺蝕、每日卡牌行情。">
+<meta property="og:type" content="website">
+
+<style>
+  :root{
+    --bg:#17140F;
+    --card:#211D17;
+    --line:#332C22;
+    --text:#F0EAE0;
+    --muted:#9A8F80;
+    --bronze:#C08A3E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang HK","Segoe UI",sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{width:100%;max-width:400px;text-align:center}
+
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.22em;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:"Noto Serif TC",Georgia,serif;
+    font-size:32px;
+    font-weight:600;
+    line-height:1.25;
+    margin-bottom:12px;
+  }
+  .sub{
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.6;
+    margin-bottom:32px;
+  }
+
+  .btn{
+    display:block;
+    width:100%;
+    padding:16px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:600;
+    text-decoration:none;
+    margin-bottom:12px;
+    transition:opacity .15s;
+  }
+  .btn:active{opacity:.75}
+  .btn-primary{background:var(--bronze);color:#1A1509}
+  .btn-secondary{
+    background:var(--card);
+    color:var(--text);
+    border:1px solid var(--line);
+  }
+  .btn-disabled{
+    background:var(--card);
+    color:var(--muted);
+    border:1px solid var(--line);
+    cursor:default;
+  }
+  .btn-disabled small{
+    display:block;
+    font-size:12px;
+    font-weight:400;
+    margin-top:4px;
+    opacity:.75;
+  }
+
+  .redirecting{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:24px;
+  }
+  .foot{
+    margin-top:28px;
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.7;
+  }
+  .foot a{color:var(--muted)}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">CardBase HK</div>
+  <h1>卡牌收藏管理</h1>
+  <p class="sub">追蹤入手價同賺蝕、每日卡牌行情。<br>香港製造。</p>
+
+  <p id="redirecting" class="redirecting hidden">正在開啟 App Store…</p>
+
+  <div id="ios" class="hidden">
+    <a class="btn btn-primary" href="https://apps.apple.com/hk/app/id6799395677">喺 App Store 下載</a>
+  </div>
+
+  <div id="android" class="hidden">
+    <div class="btn btn-disabled">Android 版即將推出<small>iOS 版現已上架</small></div>
+    <a class="btn btn-secondary" href="https://apps.apple.com/hk/app/id6799395677">睇 iOS 版</a>
+  </div>
+
+  <div id="desktop" class="hidden">
+    <a class="btn btn-primary" href="https://apps.apple.com/hk/app/id6799395677">App Store（iPhone）</a>
+    <div class="btn btn-disabled">Android 版即將推出</div>
+  </div>
+
+  <p class="foot">
+    NCAISM · 香港<br>
+    <a href="https://apps.apple.com/hk/app/id6799395677">apps.apple.com</a>
+  </p>
+
+</div>
+
+<script>
+(function(){
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+              (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1); // iPadOS
+  var isAndroid = /Android/.test(ua);
+
+  var APPSTORE = "https://apps.apple.com/hk/app/id6799395677";
+  // Android 上架後：將下面呢行改成 PLAYSTORE，再喺 android 區塊加返個掣
+  var PLAYSTORE = "https://play.google.com/store/apps/details?id=com.pokedexhk.app";
+
+  function show(id){ document.getElementById(id).classList.remove("hidden"); }
+
+  if (isIOS) {
+    show("redirecting");
+    show("ios");
+    // 自動跳轉；跳唔到嘅話上面個掣仍然撳得
+    setTimeout(function(){ window.location.replace(APPSTORE); }, 400);
+  } else if (isAndroid) {
+    show("android");
+    // Android 上架後：改成下面兩行，刪走上面 show("android")
+    // show("redirecting");
+    // setTimeout(function(){ window.location.replace(PLAYSTORE); }, 400);
+  } else {
+    show("desktop");
+  }
+})();
+</script>
+</body>
+</html>
