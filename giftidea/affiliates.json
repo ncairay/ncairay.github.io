@@ -1,0 +1,10 @@
+{
+  "merchants": {
+    "sephora": { "name": "Sephora HK", "code": "clo0mou", "template": "https://www.sephora.hk/search/?q={q}" },
+    "zalora":  { "name": "Zalora HK",  "code": "clo0mrn", "template": "https://www.zalora.com.hk/search/?q={q}" },
+    "kkday":   { "name": "KKday",      "code": "clo0muc", "template": "https://www.kkday.com/zh-hk/product/productlist/{q}?destination=D-HK-4397,D-HK-4394,D-HK-4382,D-HK-5452,D-HK-4385,D-HK-4393,D-HK-4383,D-HK-4388,D-HK-4384,D-HK-4386,D-HK-4395,D-HK-4392,D-HK-7240,D-HK-4389,D-HK-4391,D-HK-4396,D-HK-4390,D-HK-5295,D-HK-4387&keyword={q}&currency=HKD" },
+    "razer":   { "name": "Razer",      "code": "clo0mu3", "template": "https://www.razer.com/search/{q}" }
+  },
+  "categories": { "beauty": "sephora", "fashion": "zalora", "experience": "kkday" },
+  "nameRules": [ { "match": "razer", "merchant": "razer" } ]
+}
